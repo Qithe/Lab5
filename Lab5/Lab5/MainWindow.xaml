@@ -1,0 +1,33 @@
+﻿<Window x:Class="Lab5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab5"
+        mc:Ignorable="d"
+        Title="User Managment System" Height="346.585" Width="542.927" ResizeMode="NoResize">
+    <Grid>
+        <Grid x:Name="Grid_CreateUser" HorizontalAlignment="Left" Height="86" Margin="10,10,0,0" VerticalAlignment="Top" Width="218" Background="#FFD9D9D9">
+            <Label x:Name="Label_CreateUser" Content="Create user" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="TextBox_CreateUserName" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+            <TextBox x:Name="TextBox_CreateUserEmail" HorizontalAlignment="Left" Height="23" Margin="10,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+            <Button x:Name="Button_CreateUser" Content="Add User" HorizontalAlignment="Left" Margin="133,3,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.799,10.059" Click="Button_CreateUser_Click"/>
+        </Grid>
+        <Grid x:Name="Grid_ListsCollection" HorizontalAlignment="Left" Height="297" Margin="233,10,0,0" VerticalAlignment="Top" Width="295" Background="#FFD9D9D9">
+            <ListBox x:Name="ListBox_AdminList" HorizontalAlignment="Left" Height="246" Margin="150,41,0,0" VerticalAlignment="Top" Width="135"/>
+            <Label x:Name="Label_AdminList" Content="Admins" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top"/>
+            <ListBox x:Name="ListBox_UserLIst" HorizontalAlignment="Left" Height="246" Margin="10,41,0,0" VerticalAlignment="Top" Width="135"/>
+            <Label x:Name="Label_UsersList" Content="Users" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.87,0.211"/>
+        </Grid>
+        <Grid x:Name="Grid_ManageUsers" HorizontalAlignment="Left" Height="196" Margin="10,111,0,0" VerticalAlignment="Top" Width="218" Background="#FFD9D9D9">
+            <TextBox x:Name="Textbox_DisplayUserName" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+            <TextBox x:Name="TextBox_DisplayUserEmail" HorizontalAlignment="Left" Height="23" Margin="10,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+            <Image x:Name="Icon_UserIcon_Placeholder_" Margin="10,105,118,5" Source="user-512.png" Stretch="Fill" Width="90" Height="86"/>
+            <Button x:Name="Button_RemoveAdmin" Content="Remove Admin" HorizontalAlignment="Left" Margin="118,105,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="-0.799,10.059"/>
+            <Button x:Name="Button_RemoveUser" Content="Remove User" HorizontalAlignment="Left" Margin="118,129,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="-0.799,10.059"/>
+            <Label x:Name="Lable_ManageUsers" Content="Manage users" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="Button_CreateAdmin" Content="Make Admin" HorizontalAlignment="Left" Margin="118,82,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="-0.799,10.059"/>
+        </Grid>
+
+    </Grid>
+</Window>
