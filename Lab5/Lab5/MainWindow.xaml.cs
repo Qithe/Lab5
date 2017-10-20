@@ -27,7 +27,31 @@ namespace Lab5
 
         private void Button_CreateUser_Click(object sender, RoutedEventArgs e)
         {
+            if (TextBox_CreateUserName != null && TextBox_CreateUserEmail != null)
+            {
+                UserClass user = new UserClass(TextBox_CreateUserName.ToString(),TextBox_CreateUserEmail.ToString());
+                ListBox_UserLIst.Items.Add(user);
+            }
+        }
 
+        private void TextBox_CreateUserName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           
+            Button_CreateUser.IsEnabled = TextBox_CreateUserName != null && TextBox_CreateUserEmail != null;
+            
+        }
+
+        private void TextBox_CreateUserEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Button_CreateUser.IsEnabled = TextBox_CreateUserName != null && TextBox_CreateUserEmail != null;
+        }
+
+        private void ListBox_UserLIst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            Icon_UserIcon_Placeholder_.Opacity = 100;
+
+            Textbox_DisplayUserName.Text = ListBox_UserLIst.SelectedItem.ToString();
         }
     }
 }

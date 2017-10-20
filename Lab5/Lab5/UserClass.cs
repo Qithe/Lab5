@@ -8,7 +8,7 @@ namespace Lab5
 {
     class UserClass
     {
-        private string UserName { get; set; }
+        public string UserName { get; set; }
         private string UserEmail { get; set; }
         private bool IsAdmin { get; set; }
 
