@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lab5
 {
-    class UserClass
+    public class UserClass
     {
+
         public string UserName { get; set; }
         private string UserEmail { get; set; }
         private bool IsAdmin { get; set; }

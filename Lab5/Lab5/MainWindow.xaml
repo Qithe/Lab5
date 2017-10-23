@@ -10,7 +10,7 @@
     <Grid>
         <Grid x:Name="Grid_CreateUser" HorizontalAlignment="Left" Height="86" Margin="10,10,0,0" VerticalAlignment="Top" Width="218" Background="#FFD9D9D9">
             <Label x:Name="Label_CreateUser" Content="Create user" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="TextBox_CreateUserName" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" TextChanged="TextBox_CreateUserName_TextChanged"/>
+            <TextBox x:Name="TextBox_CreateUserName" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" TextChanged="TextBox_CreateUserName_TextChanged" LostFocus="TextBox_CreateUserName_LostFocus" Foreground="Black" GotFocus="TextBox_CreateUserName_GotFocus"/>
             <TextBox x:Name="TextBox_CreateUserEmail" HorizontalAlignment="Left" Height="23" Margin="10,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="TextBox_CreateUserEmail_TextChanged"/>
             <Button x:Name="Button_CreateUser" Content="Add User" HorizontalAlignment="Left" Margin="133,3,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.799,10.059" Click="Button_CreateUser_Click" IsEnabled="False"/>
         </Grid>
