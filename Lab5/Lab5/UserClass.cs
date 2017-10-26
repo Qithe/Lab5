@@ -10,14 +10,14 @@ namespace Lab5
     {
 
         public string UserName { get; set; }
-        private string UserEmail { get; set; }
-        private bool IsAdmin { get; set; }
+        public string UserEmail { get; set; }
+        public bool IsAdmin { get; set; }
 
         public UserClass(string userName, string userEmail, bool isAdmin = false)
         {
-            this.UserName = userName;
-            this.UserEmail = userEmail;
-            this.IsAdmin = isAdmin;
+            UserName = userName;
+            UserEmail = userEmail;
+            IsAdmin = isAdmin;
         }
     }
 }

@@ -17,8 +17,8 @@ namespace Lab5
 {
     public partial class MainWindow : Window
     {
-        public List<UserClass> users = new List<UserClass>();
-        public List<UserClass> admins = new List<UserClass>();
+        public List<UserClass> Users = new List<UserClass>();
+        public List<UserClass> Admins = new List<UserClass>();
         public MainWindow()
         {
             
@@ -31,18 +31,18 @@ namespace Lab5
             if (TextBox_CreateUserName != null && TextBox_CreateUserEmail != null)
             {
                 //remove users from Listbox_users
-                ListBox_UserLIst.Items.Clear();
+                ListBox_UserList.Items.Clear();
                 
                 //Add user to list users
-                users.Add( new UserClass(TextBox_CreateUserName.Text, TextBox_CreateUserEmail.Text));
+                Users.Add( new UserClass(TextBox_CreateUserName.Text, TextBox_CreateUserEmail.Text));
                 //Sort by name
-                var sortedUserList = from u in users
-                                     orderby u.UserName
-                                     select u;
+                //var sortedUserList = from u in Users
+                    //                 orderby u.UserName
+                     //                select u;
                 //Add the new users lst to listbox
-                for (int i = 0; i < sortedUserList.Count(); i++)
+                for (int i = 0; i < Users.Count; i++)
                 {
-                    ListBox_UserLIst.Items.Add(sortedUserList.ElementAt(i));
+                    ListBox_UserList.Items.Add(Users.ElementAt(i));
                 }
                 //Remove contest of textboxes
                 TextBox_CreateUserName.Clear();
@@ -62,12 +62,14 @@ namespace Lab5
             Button_CreateUser.IsEnabled = TextBox_CreateUserName != null && TextBox_CreateUserEmail != null;
         }
 
-        private void ListBox_UserLIst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBox_UserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            Icon_UserIcon_Placeholder_.Opacity = 100;
+            if (ListBox_UserList.SelectedItem != null)
+            {
+                Icon_UserIcon_Placeholder_.Opacity = 100;
 
-            Textbox_DisplayUserName.Text = ListBox_UserLIst.SelectedItem.ToString();
+                Textbox_DisplayUserName.Text = ListBox_UserList.SelectedItem.ToString();
+            }
         }
 
         private void TextBox_CreateUserName_LostFocus(object sender, RoutedEventArgs e)
@@ -91,6 +93,46 @@ namespace Lab5
             }
             
             
+        }
+
+        private void Button_CreateAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            int index = ListBox_UserList.SelectedIndex;
+            if (index != -1)
+            {
+                UserClass theUser = Users[index];
+                ListBox_AdminList.Items.Add(theUser.UserName);
+                Admins.Add(theUser);
+                ListBox_UserList.Items.RemoveAt(index);//(theUser.UserName);
+                Users.Remove(theUser);
+            }
+        }
+
+        private void Button_RemoveAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            int index = ListBox_AdminList.SelectedIndex;
+            if (index != -1)
+            {
+                UserClass theAdmin = Admins[index];
+                ListBox_UserList.Items.Add(theAdmin.UserName);
+                Users.Add(theAdmin);
+                ListBox_AdminList.Items.RemoveAt(index);//(theAdmin.UserName);
+                Admins.Remove(theAdmin);
+            }
+        }
+
+        private void Button_RemoveUser_Click(object sender, RoutedEventArgs e)
+        {
+            int index = ListBox_UserList.SelectedIndex;
+            if (index != -1)
+            {
+                if (!Admins.Contains(Users[index]))
+                {
+                    UserClass theUser = Users[index];
+                    ListBox_UserList.Items.RemoveAt(index);//(theUser.UserName);
+                    Users.Remove(theUser);
+                }
+            }
         }
     }
 }
