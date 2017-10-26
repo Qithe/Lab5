@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Windows.Controls.Primitives;
 
 namespace Lab5
 {
@@ -47,21 +49,12 @@ namespace Lab5
                 //Remove contest of textboxes
                 TextBox_CreateUserName.Clear();
                 TextBox_CreateUserEmail.Clear();
+                Lable_CreateUserNameWatermark.Visibility = System.Windows.Visibility.Visible;
+                Lable_CreateUserEmailWatermark.Visibility = System.Windows.Visibility.Visible;
+                Button_CreateUser.IsEnabled = false;
             }
         }
-
-        private void TextBox_CreateUserName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
-            Button_CreateUser.IsEnabled = TextBox_CreateUserName != null && TextBox_CreateUserEmail != null;
-            
-        }
-
-        private void TextBox_CreateUserEmail_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Button_CreateUser.IsEnabled = TextBox_CreateUserName != null && TextBox_CreateUserEmail != null;
-        }
-
+        
         private void ListBox_UserLIst_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
@@ -70,26 +63,52 @@ namespace Lab5
             Textbox_DisplayUserName.Text = ListBox_UserLIst.SelectedItem.ToString();
         }
 
+        private void TextBox_CreateUserName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Lable_CreateUserNameWatermark.Visibility = System.Windows.Visibility.Hidden;
+        }
+
         private void TextBox_CreateUserName_LostFocus(object sender, RoutedEventArgs e)
         {
-            var bc = new BrushConverter();
-
-            if (TextBox_CreateUserName.Text == null)
+            if (TextBox_CreateUserName.Text != null || TextBox_CreateUserName.Text != "")
             {
-                TextBox_CreateUserName.Foreground = (Brush)bc.ConvertFrom("#FF838383");
-                TextBox_CreateUserName.Text = "User name";
+                if (TextBox_CreateUserEmail.Text != null && TextBox_CreateUserEmail.Text != "")
+                {
+                    Button_CreateUser.IsEnabled = true;
+                }
+                else
+                {
+                    Button_CreateUser.IsEnabled = false;
+                }
+            }
+            else
+            {
+                Lable_CreateUserNameWatermark.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
-        private void TextBox_CreateUserName_GotFocus(object sender, RoutedEventArgs e)
+        private void TextBox_CreateUserEmail_GotFocus(object sender, RoutedEventArgs e)
         {
-            var bc = new BrushConverter();
-            if (TextBox_CreateUserName.Text == "User Name")
+            Lable_CreateUserEmailWatermark.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void TextBox_CreateUserEmail_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TextBox_CreateUserEmail.Text != null && TextBox_CreateUserEmail.Text != "")
             {
-                TextBox_CreateUserName.Foreground = (Brush)bc.ConvertFrom("#FF000000");
-                TextBox_CreateUserName.Clear();
+                if (TextBox_CreateUserName.Text !=null && TextBox_CreateUserName.Text !="")
+                {
+                    Button_CreateUser.IsEnabled = true;
+                }
+                else
+                {
+                    Button_CreateUser.IsEnabled = false;
+                }
             }
-            
+            else
+            {
+                Lable_CreateUserEmailWatermark.Visibility = System.Windows.Visibility.Visible;
+            }
             
         }
     }
