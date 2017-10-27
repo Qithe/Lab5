@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,39 +39,47 @@ namespace Lab5
                 //Add user to list users
                 Users.Add( new UserClass(TextBox_CreateUserName.Text, TextBox_CreateUserEmail.Text));
                 //Sort by name
-                //var sortedUserList = from u in Users
-                    //                 orderby u.UserName
-                     //                select u;
+                var sortedUserList = from u in Users
+                                     orderby u.UserName
+                                     select u;
                 //Add the new users lst to listbox
-                for (int i = 0; i < Users.Count; i++)
+                for (int i = 0; i < sortedUserList.Count(); i++)
                 {
-                    ListBox_UserList.Items.Add(Users.ElementAt(i));
+                    ListBox_UserList.Items.Add(sortedUserList.ElementAt(i));
                 }
                 //Remove contest of textboxes
                 TextBox_CreateUserName.Clear();
                 TextBox_CreateUserEmail.Clear();
-                Lable_CreateUserNameWatermark.Visibility = System.Windows.Visibility.Visible;
-                Lable_CreateUserEmailWatermark.Visibility = System.Windows.Visibility.Visible;
+                Lable_CreateUserNameWatermark.Visibility = Visibility.Visible;
+                Lable_CreateUserEmailWatermark.Visibility = Visibility.Visible;
                 Button_CreateUser.IsEnabled = false;
             }
         }
         
-        private void ListBox_UserLIst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBox_UserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
             Icon_UserIcon_Placeholder_.Opacity = 100;
-
-            Textbox_DisplayUserName.Text = ListBox_UserLIst.SelectedItem.ToString();
+            if (ListBox_UserList.SelectedIndex != -1)
+            {
+                Textbox_DisplayUserName.Text = Users[ListBox_UserList.SelectedIndex].UserName;
+                TextBox_DisplayUserEmail.Text = Users[ListBox_UserList.SelectedIndex].UserEmail;
+            }
+            else
+            {
+                Textbox_DisplayUserName.Text = "";
+                TextBox_DisplayUserEmail.Text = "";
+            }
         }
 
         private void TextBox_CreateUserName_GotFocus(object sender, RoutedEventArgs e)
         {
-            Lable_CreateUserNameWatermark.Visibility = System.Windows.Visibility.Hidden;
+            Lable_CreateUserNameWatermark.Visibility = Visibility.Hidden;
         }
 
         private void TextBox_CreateUserName_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (TextBox_CreateUserName.Text != null || TextBox_CreateUserName.Text != "")
+            if (TextBox_CreateUserName.Text != null && TextBox_CreateUserName.Text != "")
             {
                 if (TextBox_CreateUserEmail.Text != null && TextBox_CreateUserEmail.Text != "")
                 {
@@ -83,13 +92,13 @@ namespace Lab5
             }
             else
             {
-                Lable_CreateUserNameWatermark.Visibility = System.Windows.Visibility.Visible;
+                Lable_CreateUserNameWatermark.Visibility = Visibility.Visible;
             }
         }
 
         private void TextBox_CreateUserEmail_GotFocus(object sender, RoutedEventArgs e)
         {
-            Lable_CreateUserEmailWatermark.Visibility = System.Windows.Visibility.Hidden;
+            Lable_CreateUserEmailWatermark.Visibility = Visibility.Hidden;
         }
 
         private void TextBox_CreateUserEmail_LostFocus(object sender, RoutedEventArgs e)
@@ -107,7 +116,7 @@ namespace Lab5
             }
             else
             {
-                Lable_CreateUserEmailWatermark.Visibility = System.Windows.Visibility.Visible;
+                Lable_CreateUserEmailWatermark.Visibility = Visibility.Visible;
             }
             
             
@@ -121,7 +130,7 @@ namespace Lab5
                 UserClass theUser = Users[index];
                 ListBox_AdminList.Items.Add(theUser.UserName);
                 Admins.Add(theUser);
-                ListBox_UserList.Items.RemoveAt(index);//(theUser.UserName);
+                ListBox_UserList.Items.RemoveAt(index);
                 Users.Remove(theUser);
             }
         }
@@ -134,7 +143,7 @@ namespace Lab5
                 UserClass theAdmin = Admins[index];
                 ListBox_UserList.Items.Add(theAdmin.UserName);
                 Users.Add(theAdmin);
-                ListBox_AdminList.Items.RemoveAt(index);//(theAdmin.UserName);
+                ListBox_AdminList.Items.RemoveAt(index);
                 Admins.Remove(theAdmin);
             }
         }
@@ -147,10 +156,20 @@ namespace Lab5
                 if (!Admins.Contains(Users[index]))
                 {
                     UserClass theUser = Users[index];
-                    ListBox_UserList.Items.RemoveAt(index);//(theUser.UserName);
+                    ListBox_UserList.Items.RemoveAt(index);
                     Users.Remove(theUser);
                 }
             }
+        }
+
+        public bool IsEmail(string email)
+        {
+            string pattern = @"^ ([\w\.\-] +)@([\w\-] +)((\.(\w){ 2,3})+)$";
+            if (Regex.IsMatch(email, pattern))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
