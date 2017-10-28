@@ -57,7 +57,7 @@ namespace Lab5
                 //Add the new users lst to listbox
                 for (int i = 0; i < Users.Count; i++)
                 {
-                    ListBox_UserList.Items.Add(Users.ElementAt(i));
+                    ListBox_UserList.Items.Add(Users.ElementAt(i).UserName);
                 }
                 //Remove contest of textboxes
                 TextBox_CreateUserName.Clear();
@@ -79,16 +79,42 @@ namespace Lab5
             if (Index != -1)
             {
                 DisplayInfo(Users[Index]);
+                Button_CreateAdmin.IsEnabled = true;
+                Button_RemoveUser.IsEnabled = true;
             }
             else
             {
-                DisplayInfo_Label.Content = "Name:\nEmail:";
+                Label_UserInfo.Content = "Namn: \nEmail: \nIsAdmin:";
+            }
+        }
+
+        private void ListBox_AdminList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListBox_UserList.SelectedIndex != -1)
+            {
+                ListBox_UserList.SelectedIndex = -1;
+            }
+            Icon_UserIcon_Placeholder_.Opacity = 100;
+            Index = ListBox_AdminList.SelectedIndex;
+            if (Index != -1)
+            {
+                DisplayInfo(Admins[Index]);
+                Button_RemoveAdmin.IsEnabled = true;
+                Button_RemoveUser.IsEnabled = true;
+            }
+            else
+            {
+                Label_UserInfo.Content = "Namn: \nEmail: \nIsAdmin:";
             }
         }
 
         private void TextBox_CreateUserName_GotFocus(object sender, RoutedEventArgs e)
         {
             Lable_CreateUserNameWatermark.Visibility = Visibility.Hidden;
+            if (TextBox_CreateUserName.Text != "" && TextBox_CreateUserEmail.Text != "")
+            {
+                Button_EditUser.IsEnabled = true;
+            }
         }
 
         private void TextBox_CreateUserName_LostFocus(object sender, RoutedEventArgs e)
@@ -106,6 +132,10 @@ namespace Lab5
         private void TextBox_CreateUserEmail_GotFocus(object sender, RoutedEventArgs e)
         {
             Lable_CreateUserEmailWatermark.Visibility = Visibility.Hidden;
+            if (TextBox_CreateUserName.Text != "" && TextBox_CreateUserEmail.Text != "")
+            {
+                Button_EditUser.IsEnabled = true;
+            }
         }
 
         private void TextBox_CreateUserEmail_LostFocus(object sender, RoutedEventArgs e)
@@ -133,6 +163,7 @@ namespace Lab5
                 ListBox_UserList.Items.RemoveAt(Index);
                 Users.Remove(theUser);
             }
+            Button_CreateAdmin.IsEnabled = false;
         }
 
         private void Button_RemoveAdmin_Click(object sender, RoutedEventArgs e)
@@ -146,6 +177,7 @@ namespace Lab5
                 ListBox_AdminList.Items.RemoveAt(Index);
                 Admins.Remove(theAdmin);
             }
+            Button_RemoveAdmin.IsEnabled = false;
         }
 
         private void Button_RemoveUser_Click(object sender, RoutedEventArgs e)
@@ -156,27 +188,21 @@ namespace Lab5
             {
                 if (userIndex != -1)
                 {
-                    if (!Admins.Contains(Users[userIndex]))
-                    {
                         UserClass theUser = Users[userIndex];
                         ListBox_UserList.Items.RemoveAt(userIndex);
                         Users.Remove(theUser);
-                    }
                 }
             }
             else if (lastUsedList == 1)
             {
                 if (adminIndex != -1)
                 {
-                    if (!Admins.Contains(Users[adminIndex]))
-                    {
-                        UserClass theUser = Users[adminIndex];
-                        ListBox_UserList.Items.RemoveAt(adminIndex);
-                        Users.Remove(theUser);
-                    }
+                        UserClass theAdmin = Admins[adminIndex];
+                        ListBox_AdminList.Items.RemoveAt(adminIndex);
+                        Admins.Remove(theAdmin);
                 }
             }
-            
+            Button_RemoveUser.IsEnabled = false;
         }
 
         public bool IsEmail(string email)
@@ -190,38 +216,38 @@ namespace Lab5
         }
 
         private void ListBox_UserList_GotFocus(object sender, RoutedEventArgs e)
-        {
+        {/*
             Button_CreateAdmin.IsEnabled = true;
             Button_RemoveUser.IsEnabled = true;
             TextBox_DisplayUserEmail.IsEnabled = true;
-            Textbox_DisplayUserName.IsEnabled = true;
+            Textbox_DisplayUserName.IsEnabled = true;*/
         }
 
         private void ListBox_UserList_LostFocus(object sender, RoutedEventArgs e)
         {
-            lastUsedList = 0;
+            lastUsedList = 0;/*
             Button_CreateAdmin.IsEnabled = false;
             Button_RemoveUser.IsEnabled = false;
             TextBox_DisplayUserEmail.IsEnabled = false;
-            Textbox_DisplayUserName.IsEnabled = false;
+            Textbox_DisplayUserName.IsEnabled = false;*/
         }
 
         private void ListBox_AdminList_GotFocus(object sender, RoutedEventArgs e)
         {
-           
+           /*
             Button_RemoveAdmin.IsEnabled = true;
             Button_RemoveUser.IsEnabled = true;
             TextBox_DisplayUserEmail.IsEnabled = true;
-            Textbox_DisplayUserName.IsEnabled = true;
+            Textbox_DisplayUserName.IsEnabled = true;*/
         }
 
         private void ListBox_AdminList_LostFocus(object sender, RoutedEventArgs e)
         {
-            lastUsedList = 1;
+            lastUsedList = 1;/*
             Button_RemoveAdmin.IsEnabled = false;
             Button_RemoveUser.IsEnabled = false;
             TextBox_DisplayUserEmail.IsEnabled = false;
-            Textbox_DisplayUserName.IsEnabled = false;
+            Textbox_DisplayUserName.IsEnabled = false;*/
         }
 
         private void TextBox_CreateUserName_TextChanged(object sender, TextChangedEventArgs e)
@@ -229,10 +255,6 @@ namespace Lab5
             if (TextBox_CreateUserEmail.Text != null && TextBox_CreateUserEmail.Text != "")
             {
                 TextChecker(TextBox_CreateUserName.Text);
-            }
-            else
-            {
-                Lable_CreateUserEmailWatermark.Visibility = Visibility.Visible;
             }
         }
 
@@ -262,27 +284,11 @@ namespace Lab5
 
         
 
-        private void ListBox_AdminList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ListBox_UserList.SelectedIndex != -1)
-            {
-                ListBox_UserList.SelectedIndex = -1;
-            }
-            Icon_UserIcon_Placeholder_.Opacity = 100;
-            Index = ListBox_AdminList.SelectedIndex;
-            if (Index != -1)
-            {
-                DisplayInfo(Admins[Index]);
-            }
-            else
-            {
-                DisplayInfo_Label.Content = "Name:\nEmail:";
-            }
-        }
+        
 
         public void DisplayInfo(UserClass user)
         {
-            DisplayInfo_Label.Content = $"Name: {user.UserName}\nEmail: {user.UserEmail}";
+            Label_UserInfo.Content = $"Namn: {user.UserName}\nEmail: {user.UserEmail}\nIsAdmin: {user.IsAdmin}";
         }
 
         private void Button_EditUser_Click(object sender, RoutedEventArgs e)
@@ -290,24 +296,26 @@ namespace Lab5
             Index = ListBox_UserList.SelectedIndex;
             if (Index != -1)
             {
+                int tempIndex = Index;
                 Users[Index].UserName = TextBox_CreateUserName.Text;
                 Users[Index].UserEmail = TextBox_CreateUserEmail.Text;
+                ListBox_UserList.Items.RemoveAt(Index);
+                ListBox_UserList.Items.Insert(tempIndex, Users[tempIndex].UserName);
+
             }
             Index = ListBox_AdminList.SelectedIndex;
             if (Index != -1)
             {
+                int tempIndex = Index;
                 Admins[Index].UserName = TextBox_CreateUserName.Text;
                 Admins[Index].UserEmail = TextBox_CreateUserEmail.Text;
+                ListBox_AdminList.Items.RemoveAt(Index);
+                ListBox_AdminList.Items.Insert(tempIndex, Users[tempIndex]);
             }
             TextBox_CreateUserName.Clear();
             TextBox_CreateUserEmail.Clear();
             Lable_CreateUserNameWatermark.Visibility = Visibility.Visible;
             Lable_CreateUserEmailWatermark.Visibility = Visibility.Visible;
-        }
-
-        private void ListBox_UserList_LostFocus(object sender, RoutedEventArgs e)
-        {
-            ListBox_UserList.Items.Refresh();
         }
     }
 }
