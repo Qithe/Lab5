@@ -84,7 +84,7 @@ namespace Lab5
             }
             else
             {
-                Label_UserInfo.Content = "Namn: \nEmail: \nIsAdmin:";
+                Label_UserInfo.Content = "Namn: \nEmail:";
             }
         }
 
@@ -255,6 +255,10 @@ namespace Lab5
             if (TextBox_CreateUserEmail.Text != null && TextBox_CreateUserEmail.Text != "")
             {
                 TextChecker(TextBox_CreateUserName.Text);
+                if(ListBox_UserList.SelectedIndex != -1 || ListBox_AdminList.SelectedIndex != -1)
+                {
+                    Button_EditUser.IsEnabled = true;
+                }
             }
         }
 
@@ -275,6 +279,10 @@ namespace Lab5
             if (TextBox_CreateUserName.Text != null && TextBox_CreateUserName.Text != "")
             {
                 TextChecker(TextBox_CreateUserEmail.Text);
+                if (ListBox_UserList.SelectedIndex != -1 || ListBox_AdminList.SelectedIndex != -1)
+                {
+                    Button_EditUser.IsEnabled = true;
+                }
             }
             else
             {
@@ -288,7 +296,7 @@ namespace Lab5
 
         public void DisplayInfo(UserClass user)
         {
-            Label_UserInfo.Content = $"Namn: {user.UserName}\nEmail: {user.UserEmail}\nIsAdmin: {user.IsAdmin}";
+            Label_UserInfo.Content = $"Namn: {user.UserName}\nEmail: {user.UserEmail}";
         }
 
         private void Button_EditUser_Click(object sender, RoutedEventArgs e)
