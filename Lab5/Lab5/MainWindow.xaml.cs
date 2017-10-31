@@ -40,20 +40,18 @@ namespace Lab5
 
                 //Add user to list users
                 //if (IsEmail(TextBox_CreateUserEmail.Text))
-                Index = ListBox_UserList.SelectedIndex;
-                if (Index != -1)
-                {
-                    Users[Index] = new UserClass(TextBox_CreateUserName.Text, TextBox_CreateUserEmail.Text);
-                }
-                else
-                {
+                //Index = ListBox_UserList.SelectedIndex;
+                //if (Index != -1)
+                //{
+                //    Users[Index] = new UserClass(TextBox_CreateUserName.Text, TextBox_CreateUserEmail.Text);
+                //}
+                //else
+                //{
                     Users.Add(new UserClass(TextBox_CreateUserName.Text, TextBox_CreateUserEmail.Text));
-                }
+                //}
                 
                 //Sort by name
-                var sortedUserList = from u in Users
-                                     orderby u.UserName
-                                     select u;
+                
                 //Add the new users lst to listbox
                 for (int i = 0; i < Users.Count; i++)
                 {
@@ -112,9 +110,12 @@ namespace Lab5
         private void TextBox_CreateUserName_GotFocus(object sender, RoutedEventArgs e)
         {
             Lable_CreateUserNameWatermark.Visibility = Visibility.Hidden;
-            if (TextBox_CreateUserName.Text != "" && TextBox_CreateUserEmail.Text != "" && ListBox_UserList.SelectedIndex != -1 || ListBox_AdminList.SelectedIndex != -1)
+            if (TextBox_CreateUserName.Text != "" && TextBox_CreateUserEmail.Text != "")
             {
-                Button_EditUser.IsEnabled = true;
+                if (ListBox_UserList.SelectedIndex != -1 || ListBox_AdminList.SelectedIndex != -1)
+                {
+                    Button_EditUser.IsEnabled = true;
+                }
             }
         }
 
@@ -133,9 +134,12 @@ namespace Lab5
         private void TextBox_CreateUserEmail_GotFocus(object sender, RoutedEventArgs e)
         {
             Lable_CreateUserEmailWatermark.Visibility = Visibility.Hidden;
-            if (TextBox_CreateUserName.Text != "" && TextBox_CreateUserEmail.Text != "" && ListBox_UserList.SelectedIndex != -1 || ListBox_AdminList.SelectedIndex != -1)
+            if (TextBox_CreateUserName.Text != "" && TextBox_CreateUserEmail.Text != "")
             {
-                Button_EditUser.IsEnabled = true;
+                if (ListBox_UserList.SelectedIndex != -1 || ListBox_AdminList.SelectedIndex != -1)
+                {
+                    Button_EditUser.IsEnabled = true;
+                }
             }
         }
 
@@ -165,6 +169,7 @@ namespace Lab5
                 Users.Remove(theUser);
             }
             Button_CreateAdmin.IsEnabled = false;
+            Button_RemoveUser.IsEnabled = false;
         }
 
         private void Button_RemoveAdmin_Click(object sender, RoutedEventArgs e)
@@ -179,6 +184,7 @@ namespace Lab5
                 Admins.Remove(theAdmin);
             }
             Button_RemoveAdmin.IsEnabled = false;
+            Button_RemoveUser.IsEnabled = false;
         }
 
         private void Button_RemoveUser_Click(object sender, RoutedEventArgs e)
