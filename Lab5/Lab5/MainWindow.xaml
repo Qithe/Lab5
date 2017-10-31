@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Lab5"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Lab5.MainWindow"
         mc:Ignorable="d"
-        Title="User Managment System" Height="439.585" Width="346.927" ResizeMode="NoResize">
+        Title="User Managment System" Height="439.585" Width="406.927" ResizeMode="NoResize">
     <Grid Margin="0,0,3.4,-0.2">
-        <Grid x:Name="Grid_CreateUser" Height="74" Margin="10,10,4.8,0" VerticalAlignment="Top" Background="#FFD9D9D9">
+        <Grid x:Name="Grid_CreateUser" Height="74" Margin="10,10,10.4,0" VerticalAlignment="Top" Background="#FFD9D9D9">
             <TextBox x:Name="TextBox_CreateUserName" Height="23" Margin="5,23,188.2,0" TextWrapping="Wrap" VerticalAlignment="Top" LostFocus="TextBox_CreateUserName_LostFocus" Foreground="Black" GotFocus="TextBox_CreateUserName_GotFocus" ToolTip="Enter the Users First- and Surname here." TextChanged="TextBox_CreateUserName_TextChanged"/>
             <TextBox x:Name="TextBox_CreateUserEmail" Margin="5,46,188.2,0" TextWrapping="Wrap" ToolTip="Enter the users Email here" GotFocus="TextBox_CreateUserEmail_GotFocus" LostFocus="TextBox_CreateUserEmail_LostFocus" TextChanged="TextBox_CreateUserEmail_TextChanged" Height="23" VerticalAlignment="Top"/>
             <Button x:Name="Button_CreateUser" Content="Add User" Margin="0,2,95,0" VerticalAlignment="Top" RenderTransformOrigin="-0.799,10.059" Click="Button_CreateUser_Click" IsEnabled="False" ToolTip="Add user to the list" Height="23" HorizontalAlignment="Right" Width="90"/>
@@ -20,17 +20,11 @@
             <Button x:Name="Button_RemoveAdmin" Content="Remove Admin" HorizontalAlignment="Right" Width="90" RenderTransformOrigin="-0.799,10.059" Click="Button_RemoveAdmin_Click" IsEnabled="False" Margin="0,46,5,0" Height="23" VerticalAlignment="Top"/>
             <Button x:Name="Button_EditUser" Content="Edit User" HorizontalAlignment="Right" Margin="0,23,95,0" VerticalAlignment="Top" Width="90" Height="23" RenderTransformOrigin="0.727,-0.548" IsEnabled="False" Click="Button_EditUser_Click"/>
         </Grid>
-        <Grid x:Name="Grid_ListsCollection" Margin="10,89,0,10" Background="#FFD9D9D9" HorizontalAlignment="Left" Width="323">
-            <ListBox x:Name="ListBox_AdminList" Margin="163,112,10,0" ToolTip="This is where admins will be displayed" LostFocus="ListBox_AdminList_LostFocus" Height="190" VerticalAlignment="Top" SelectionChanged="ListBox_AdminList_SelectionChanged"/>
-            <Label x:Name="Label_AdminList" Content="Admins" HorizontalAlignment="Left" Margin="163,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.52,0.538"/>
-            <ListBox x:Name="ListBox_UserList" Margin="10,112,0,0" SelectionChanged="ListBox_UserList_SelectionChanged" LostFocus="ListBox_UserList_LostFocus" HorizontalAlignment="Left" Width="150" Height="190" VerticalAlignment="Top"/>
-            <Label x:Name="Label_UsersList" Content="Users" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.87,0.211" Height="23"/>
-        </Grid>
-        <Grid x:Name="Grid_UserManagement" HorizontalAlignment="Left" Height="196" Margin="-233,28,0,0" VerticalAlignment="Top" Width="218" Background="#FFD9D9D9">
-            <TextBox x:Name="Textbox_DisplayUserName" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" IsReadOnly="True" ToolTip="The selected users name will be displayed here" IsEnabled="False"/>
-            <TextBox x:Name="TextBox_DisplayUserEmail" HorizontalAlignment="Left" Height="23" Margin="10,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" IsReadOnly="True" ToolTip="The selected users email will be displayed here" IsEnabled="False"/>
-            <Image x:Name="Icon_UserIcon_Placeholder_" Margin="254,68,-126,42" Source="Content/user-512.png" Stretch="Fill" Width="90" Height="86" Opacity="0" RenderTransformOrigin="0.889,0.628"/>
-            <Label x:Name="Label_UserInfo" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="349,68,-337,0" Height="86" Width="206"/>
+        <Grid x:Name="Grid_ListsCollection" Margin="10,89,10.4,0" Background="#FFD9D9D9" Height="311" VerticalAlignment="Top">
+            <ListBox x:Name="ListBox_AdminList" Margin="0,112,10.2,9" ToolTip="This is where admins will be displayed" LostFocus="ListBox_AdminList_LostFocus" SelectionChanged="ListBox_AdminList_SelectionChanged" HorizontalAlignment="Right" Width="170"/>
+            <Label x:Name="Label_AdminList" Content="Admins" HorizontalAlignment="Left" Margin="197,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.52,0.538"/>
+            <ListBox x:Name="ListBox_UserList" Margin="10,112,0,0" SelectionChanged="ListBox_UserList_SelectionChanged" LostFocus="ListBox_UserList_LostFocus" Height="190" VerticalAlignment="Top" HorizontalAlignment="Left" Width="170"/>
+            <Label x:Name="Label_UsersList" Content="Users" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.87,0.211" Height="23"/>
         </Grid>
 
     </Grid>
