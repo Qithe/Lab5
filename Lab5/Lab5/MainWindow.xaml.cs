@@ -73,7 +73,7 @@ namespace Lab5
             {
                 ListBox_AdminList.SelectedIndex = -1;
             }
-            Icon_UserIcon_Placeholder_.Opacity = 100;
+            Icon_UserIcon_Placeholder.Opacity = 100;
             Index = ListBox_UserList.SelectedIndex;
             if (Index != -1)
             {
@@ -92,8 +92,9 @@ namespace Lab5
             if (ListBox_UserList.SelectedIndex != -1)
             {
                 ListBox_UserList.SelectedIndex = -1;
+                Button_CreateAdmin.IsEnabled = false;
             }
-            Icon_UserIcon_Placeholder_.Opacity = 100;
+            Icon_UserIcon_Placeholder.Opacity = 100;
             Index = ListBox_AdminList.SelectedIndex;
             if (Index != -1)
             {

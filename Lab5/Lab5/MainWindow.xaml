@@ -25,6 +25,8 @@
             <Label x:Name="Label_AdminList" Content="Admins" HorizontalAlignment="Left" Margin="197,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.52,0.538"/>
             <ListBox x:Name="ListBox_UserList" Margin="10,112,0,0" SelectionChanged="ListBox_UserList_SelectionChanged" LostFocus="ListBox_UserList_LostFocus" Height="190" VerticalAlignment="Top" HorizontalAlignment="Left" Width="170"/>
             <Label x:Name="Label_UsersList" Content="Users" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.87,0.211" Height="23"/>
+            <Image x:Name="Icon_UserIcon_Placeholder" HorizontalAlignment="Left" Height="74" Margin="10,7,0,0" VerticalAlignment="Top" Width="77" Source="Content/user-512.png" Opacity="0"/>
+            <Label x:Name="Label_UserInfo" Content="" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" Height="71" Width="263"/>
         </Grid>
 
     </Grid>
