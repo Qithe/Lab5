@@ -203,6 +203,7 @@ namespace Lab5
                         Admins.Remove(theAdmin);
                 }
                 Button_RemoveAdmin.IsEnabled = false;
+                Button_CreateAdmin.IsEnabled = false;
             }
             Button_RemoveUser.IsEnabled = false;
         }
