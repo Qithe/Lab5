@@ -21,9 +21,9 @@
             <Button x:Name="Button_EditUser" Content="Edit User" HorizontalAlignment="Right" Margin="0,23,95,0" VerticalAlignment="Top" Width="90" Height="23" RenderTransformOrigin="0.727,-0.548" IsEnabled="False" Click="Button_EditUser_Click"/>
         </Grid>
         <Grid x:Name="Grid_ListsCollection" Margin="10,89,0,10" Background="#FFD9D9D9" HorizontalAlignment="Left" Width="323">
-            <ListBox x:Name="ListBox_AdminList" Margin="163,112,10,0" ToolTip="This is where admins will be displayed" LostFocus="ListBox_AdminList_LostFocus" GotFocus="ListBox_AdminList_GotFocus" Height="190" VerticalAlignment="Top" SelectionChanged="ListBox_AdminList_SelectionChanged"/>
+            <ListBox x:Name="ListBox_AdminList" Margin="163,112,10,0" ToolTip="This is where admins will be displayed" LostFocus="ListBox_AdminList_LostFocus" Height="190" VerticalAlignment="Top" SelectionChanged="ListBox_AdminList_SelectionChanged"/>
             <Label x:Name="Label_AdminList" Content="Admins" HorizontalAlignment="Left" Margin="163,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.52,0.538"/>
-            <ListBox x:Name="ListBox_UserList" Margin="10,112,0,0" SelectionChanged="ListBox_UserList_SelectionChanged" LostFocus="ListBox_UserList_LostFocus" GotFocus="ListBox_UserList_GotFocus" HorizontalAlignment="Left" Width="150" Height="190" VerticalAlignment="Top"/>
+            <ListBox x:Name="ListBox_UserList" Margin="10,112,0,0" SelectionChanged="ListBox_UserList_SelectionChanged" LostFocus="ListBox_UserList_LostFocus" HorizontalAlignment="Left" Width="150" Height="190" VerticalAlignment="Top"/>
             <Label x:Name="Label_UsersList" Content="Users" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.87,0.211" Height="23"/>
         </Grid>
         <Grid x:Name="Grid_UserManagement" HorizontalAlignment="Left" Height="196" Margin="-233,28,0,0" VerticalAlignment="Top" Width="218" Background="#FFD9D9D9">
